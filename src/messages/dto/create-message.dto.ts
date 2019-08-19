@@ -1,5 +1,5 @@
 
-export class CreageMessageDto {
+export class CreateMessageDto {
   readonly title: string;
   readonly text: string;
 }
