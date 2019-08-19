@@ -1,6 +1,7 @@
 import { HttpException, Injectable } from '@nestjs/common';
 import { IUser } from './interfaces/user.interface';
 import { InjectModel } from '@nestjs/mongoose';
+import { Role } from './interfaces/role';
 
 @Injectable()
 export class UsersService {
