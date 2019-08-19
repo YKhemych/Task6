@@ -1,7 +1,6 @@
 import { HttpException, Injectable } from '@nestjs/common';
 import { IUser } from './interfaces/user.interface';
 import { InjectModel } from '@nestjs/mongoose';
-import { Role } from './interfaces/role';
 
 @Injectable()
 export class UsersService {
@@ -12,7 +11,7 @@ export class UsersService {
       const newUser = this.userModel(user);
       return await newUser.save();
     } else {
-      throw new HttpException('Conflict. This user exist', 409);
+      throw new HttpException('Conflict. This user already exist', 409);
     }
   }
   async updateUser(id: string, user: IUser): Promise<IUser> {
