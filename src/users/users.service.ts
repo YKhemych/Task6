@@ -1,4 +1,4 @@
-import { HttpException, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { IUser } from './interfaces/user.interface';
 import { InjectModel } from '@nestjs/mongoose';
 
@@ -7,12 +7,8 @@ export class UsersService {
   constructor(@InjectModel('User') private readonly userModel) {}
 
   async createUser(user: IUser): Promise<IUser> {
-    if (await this.userModel.findOne({username: user.username}) === null) {
       const newUser = this.userModel(user);
       return await newUser.save();
-    } else {
-      throw new HttpException('Conflict. This user already exist', 409);
-    }
   }
   async updateUser(id: string, user: IUser): Promise<IUser> {
     return this.userModel.findByIdAndUpdate(id, user, {new: true});
@@ -20,7 +16,7 @@ export class UsersService {
   async deleteUser(id: string): Promise<IUser> {
     return this.userModel.findByIdAndDelete(id);
   }
-  async findOne(name: string): Promise<IUser> {
-    return await this.userModel.findOne({username: name});
+  async findOne(username: string): Promise<IUser> {
+    return await this.userModel.findOne({ username });
   }
 }

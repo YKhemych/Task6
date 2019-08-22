@@ -6,11 +6,6 @@ import { IUser } from './interfaces/user.interface';
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
-
-  @Post()
-  createUser(@Body() createUserDto: CreateUserDto): Promise<IUser> {
-    return this.usersService.createUser(createUserDto);
-  }
   @Put(':id')
   updateUser(@Param('id') id, @Body() createUserDto: CreateUserDto): Promise<IUser> {
     return this.usersService.updateUser(id, createUserDto);

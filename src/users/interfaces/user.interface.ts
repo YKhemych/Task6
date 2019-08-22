@@ -1,7 +1,7 @@
-import { Role } from './role';
 
 export interface IUser {
+  _id?: string;
   username: string;
   password: string;
-  role: Role;
+  role: 'USER' | 'ADMIN';
 }
